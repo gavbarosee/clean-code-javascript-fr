@@ -26,11 +26,11 @@ Principes d'ingénierie logicielle, de l'ouvrage de Robert C. Martin
 adapté pour JavaScript. Ce n'est pas un guide de style. C'est un guide pour la production de logiciels
 [lisibles, réutilisables et refactorables](https://github.com/ryanmcdermott/3rs-of-software-architecture) en JavaScript.
 
-Tous les principes énoncés ici ne doivent pas être strictement suivis, et encore moins seront universellement acceptés. Ce sont des lignes directrices et rien de plus, mais ce sont des lignes codifiées au fil de nombreuses années d'expérience collective par les auteurs de _Clean Code_.
+Tous les principes énoncés ici ne doivent pas être suivis à la lettre, et ne sont pas universellement acceptés. Ce sont des lignes directrices et rien de plus, mais ce sont des lignes codifiées au fil de nombreuses années d'expérience collective par les auteurs de _Clean Code_.
 
-Notre métier de génie logiciel a un peu plus de 50 ans et nous apprenons encore beaucoup. Lorsque l'architecture logicielle est aussi ancienne que l'architecture elle-même, nous aurons peut-être des règles plus strictes à suivre. Pour l’instant, laissez ces instructions servir de point de repère pour évaluer la qualité du code JavaScript que vous et votre équipe produisez.
+Notre métier de génie logiciel a un peu plus de 50 ans et nous apprenons encore beaucoup. Lorsque l'architecture logicielle sera aussi ancienne que l'architecture elle-même, nous aurons peut-être des règles plus strictes à suivre. Pour l’instant, laissez ces instructions servir de point de repère pour évaluer la qualité du code JavaScript que vous et votre équipe produisez.
 
-Encore une chose: savoir que cela ne fera pas de vous un meilleur développeur de logiciels et travailler avec eux pendant de nombreuses années ne signifie pas que vous ne ferez pas d'erreurs. Chaque morceau de code commence par un premier brouillon, comme l'argile humide qui prend sa forme finale. Enfin, nous corrigeons les imperfections lorsque nous les examinons avec nos pairs. Ne vous battez pas pour les premières ébauches à améliorer. Battez le code à la place!
+Encore une chose: sachez que cela ne fera pas de vous un meilleur développeur de logiciels et suivre ces règles pendant de nombreuses années ne signifie pas que vous ne ferez pas d'erreurs. Chaque morceau de code commence par un premier brouillon, comme l'argile humide qui prend sa forme finale. Enfin, nous corrigeons les imperfections lorsque nous les examinons avec nos pairs. Ne vous flagellez pas pour les premières ébauches nécessitant des améliorations.
 
 ## **Variables**
 
@@ -48,7 +48,7 @@ const yyyymmdstr = moment().format("YYYY/MM/DD");
 const dateActuelle = moment().format("YYYY/MM/DD");
 ```
 
-**[⬆ retour au sommet](#table-des-matières)**
+**[⬆ retour au sommaire](#table-des-matières)**
 
 ### Utilisez le même vocabulaire pour le même type de variable
 
@@ -63,16 +63,15 @@ obtenirFicheDuClient();
 **Bien:**
 
 ```javascript
-obtenirUtiilisateur();
+obtenirUtilisateur();
 ```
 
-**[⬆ retour au sommet](#table-des-matières)**
+**[⬆ retour au sommaire](#table-des-matières)**
 
-### Utilisez des noms interrogeables
+### Utilisez des noms pouvant être recherchés
 
-Nous lirons plus de code que nous n'en écrirons jamais. Il est important que le code nous
-écrire est lisible et consultable. Par _pas_ nommer les variables qui finissent par
-avoir un sens pour comprendre notre programme, nous avons blessé nos lecteurs.
+Nous lirons plus de code que nous n'en écrirons jamais. Il est important que le code que nous
+écrivons soit lisible et consultable. En ne nommant pas les variables de façon intelligible, qui ont du sens pour notre programme, nous perdons nos lecteurs.
 Rendez vos noms consultables. Des outils comme
 [buddy.js](https://github.com/danielstjules/buddy.js) et
 [ESLint](https://github.com/eslint/eslint/blob/660e0918933e6e7fede26bc675a0763a6b357c94/docs/rules/no-magic-numbers.md)
@@ -94,7 +93,7 @@ const MILLISECONDES_PAR_JOUR = 86400000;
 setTimeout(misÀFeu, MILLISECONDES_PAR_JOUR);
 ```
 
-**[⬆ retour au sommet](#table-des-matières)**
+**[⬆ retour au sommaire](#table-des-matières)**
 
 ### Utiliser des variables explicatives
 
@@ -118,7 +117,7 @@ const [, ville, codePostal] = adresse.match(codePostalVilleRegex) || [];
 enregistrerCodePostalVille(ville, codePostal);
 ```
 
-**[⬆ retour au sommet](#table-des-matières)**
+**[⬆ retour au sommaire](#table-des-matières)**
 
 ### Éviter la cartographie mentale
 
@@ -153,7 +152,7 @@ endroits.forEach(endroit => {
 });
 ```
 
-**[⬆ retour au sommet](#table-des-matières)**
+**[⬆ retour au sommaire](#table-des-matières)**
 
 ### Ne pas ajouter de contexte inutile
 
@@ -188,13 +187,12 @@ function peindreLaVoiture(voiture) {
 }
 ```
 
-**[⬆ retour au sommet](#table-des-matières)**
+**[⬆ retour au sommaire](#table-des-matières)**
 
 ### Utiliser des arguments par défaut au lieu de court-circuiter ou conditionnels
 
-Les arguments par défaut sont souvent plus propres que les courts-circuits. Sachez que si vous
-utilisez-les, votre fonction ne fournira que les valeurs par défaut pour `undefined`
-arguments. Autres valeurs "fausses" telles que `''`, `" ",` `false`, `null`, `0` et
+Les arguments par défaut sont souvent plus propres que les courts-circuits. Sachez que si vous les
+utilisez, votre fonction ne fournira que les valeurs par défaut dans le cas où l'argument est `undefined`. Les autres valeurs "fausses" telles que `''`, `" ",` `false`, `null`, `0` et
 `NaN`, ne sera pas remplacé par une valeur par défaut.
 
 **Mal:**
@@ -214,7 +212,7 @@ function créerUneMicroBrasserie(nom = "Hipster Brew Co.") {
 }
 ```
 
-**[⬆ retour au sommet](#table-des-matières)**
+**[⬆ retour au sommaire](#table-des-matières)**
 
 ## **Fonctions**
 
@@ -234,7 +232,7 @@ argument.
 Puisque JavaScript vous permet de créer des objets à la volée, sans trop de classe
 passe-partout, vous pouvez utiliser un objet si vous vous trouvez nécessitant un
 beaucoup d'arguments.
-
+ 
 Pour rendre évidentes les propriétés attendues par la fonction, vous pouvez utiliser le logiciel ES2015 / ES6.
 syntaxe de déstructuration. Cela présente quelques avantages:
 
@@ -270,7 +268,7 @@ créerUnMenu({
 });
 ```
 
-**[⬆ retour au sommet](#table-des-matières)**
+**[⬆ retour au sommaire](#table-des-matières)**
 
 ### Les fonctions doivent faire une chose
 
@@ -306,7 +304,7 @@ function estClientActif(client) {
 }
 ```
 
-**[⬆ retour au sommet](#table-des-matières)**
+**[⬆ retour au sommaire](#table-des-matières)**
 
 ### Les noms de fonction doivent dire ce qu'ils font
 
@@ -334,7 +332,7 @@ const date = new Date();
 ajouterMoisÀDate(1, date);
 ```
 
-**[⬆ retour au sommet](#table-des-matières)**
+**[⬆ retour au sommaire](#table-des-matières)**
 
 ### Les fonctions ne devraient être qu'un seul niveau d'abstraction
 
@@ -406,7 +404,7 @@ function analyser(jetons) {
 }
 ```
 
-**[⬆ retour au sommet](#table-des-matières)**
+**[⬆ retour au sommaire](#table-des-matières)**
 
 ### Supprimez le code en double
 
@@ -492,7 +490,7 @@ function afficherLaListeDesEmployés(employés) {
 }
 ```
 
-**[⬆ retour au sommet](#table-des-matières)**
+**[⬆ retour au sommaire](#table-des-matières)**
 
 ### Définir des objets par défaut avec Object.assign
 
@@ -544,7 +542,7 @@ function créerUnMenu(config) {
 créerUnMenu(configMenu);
 ```
 
-**[⬆ retour au sommet](#table-des-matières)**
+**[⬆ retour au sommaire](#table-des-matières)**
 
 ### Ne pas utiliser les drapeaux comme paramètres de fonction
 
@@ -574,7 +572,7 @@ function créerUnFichierTemp(nom) {
 }
 ```
 
-**[⬆ retour au sommet](#table-des-matières)**
+**[⬆ retour au sommaire](#table-des-matières)**
 
 ### Éviter les effets secondaires (partie 1)
 
@@ -623,7 +621,7 @@ console.log(nom); // 'Gavish Barosee';
 console.log(nouveauNom); // ['Gavish', 'Barosee'];
 ```
 
-**[⬆ retour au sommet](#table-des-matières)**
+**[⬆ retour au sommaire](#table-des-matières)**
 
 ### Éviter les effets secondaires (partie 2)
 
@@ -676,7 +674,7 @@ const AjouterUnArticleAuPanier = (panier, article) => {
 };
 ```
 
-**[⬆ retour au sommet](#table-des-matières)**
+**[⬆ retour au sommaire](#table-des-matières)**
 
 ### Ne pas écrire dans les fonctions globales
 
@@ -710,7 +708,7 @@ class SuperArray extends Array {
 }
 ```
 
-**[⬆ retour au sommet](#table-des-matières)**
+**[⬆ retour au sommaire](#table-des-matières)**
 
 ### Privilégier la programmation fonctionnelle à la programmation impérative
 
@@ -775,7 +773,7 @@ const sortieTotale = sortieDuProgrammeur.reduce(
 );
 ```
 
-**[⬆ retour au sommet](#table-des-matières)**
+**[⬆ retour au sommaire](#table-des-matières)**
 
 ### Encapsuler des conditions
 
@@ -799,7 +797,7 @@ if (devraitMontrerSpinner(fsmInstance, listNodeInstance)) {
 }
 ```
 
-**[⬆ retour au sommet](#table-des-matières)**
+**[⬆ retour au sommaire](#table-des-matières)**
 
 ### Éviter les conditionnels négatifs
 
@@ -827,7 +825,7 @@ if (estDOMNodePresent(node)) {
 }
 ```
 
-**[⬆ retour au sommet](#table-des-matières)**
+**[⬆ retour au sommaire](#table-des-matières)**
 
 ### Éviter les conditionnels
 
@@ -887,7 +885,7 @@ class Cessna extends Avion {
 }
 ```
 
-**[⬆ retour au sommet](#table-des-matières)**
+**[⬆ retour au sommaire](#table-des-matières)**
 
 ### Éviter la vérification de type (partie 1)
 
@@ -916,7 +914,7 @@ function voyagerAuTexas(véhicule) {
 }
 ```
 
-**[⬆ retour au sommet](#table-des-matières)**
+**[⬆ retour au sommaire](#table-des-matières)**
 
 ### Éviter la vérification de type (partie 2)
 
@@ -953,7 +951,7 @@ function combiner(val1, val2) {
 }
 ```
 
-**[⬆ retour au sommet](#table-des-matières)**
+**[⬆ retour au sommaire](#table-des-matières)**
 
 ### Ne pas trop optimiser
 
@@ -981,7 +979,7 @@ for (let i = 0; i < list.length; i++) {
 }
 ```
 
-**[⬆ retour au sommet](#table-des-matières)**
+**[⬆ retour au sommaire](#table-des-matières)**
 
 ### Supprimer le code mort
 
@@ -1015,7 +1013,7 @@ const req = nouveauModuleDeDemande;
 traqueurInventaire("pommed", req, "www.inventory-awesome.io");
 ```
 
-**[⬆ retour au sommet](#table-des-matières)**
+**[⬆ retour au sommaire](#table-des-matières)**
 
 ## **Objets et Structures De Données**
 
@@ -1078,7 +1076,7 @@ const compte = faireUnCompteBancaire();
 compte.fixerLeBilan(100);
 ```
 
-**[⬆ retour au sommet](#table-des-matières)**
+**[⬆ retour au sommaire](#table-des-matières)**
 
 ### Faire en sorte que les objets aient des membres privés
 
@@ -1118,7 +1116,7 @@ delete employé.nom;
 console.log(`Nom de l'employé: ${employé.obtenirNom()}`); // Nom de l'employé: undefined
 ```
 
-**[⬆ retour au sommet](#table-des-matières)**
+**[⬆ retour au sommaire](#table-des-matières)**
 
 ## **Classes**
 
@@ -1205,7 +1203,7 @@ class Humain extends Mammal {
 }
 ```
 
-**[⬆ retour au sommet](#table-des-matières)**
+**[⬆ retour au sommaire](#table-des-matières)**
 
 ### Utiliser la méthode de chaînage
 
@@ -1287,7 +1285,7 @@ const voiture = new Voiture("Ford", "F-150", "rouge")
   .enregistrer();
 ```
 
-**[⬆ retour au sommet](#table-des-matières)**
+**[⬆ retour au sommaire](#table-des-matières)**
 
 ### Préfère la composition à l'héritage
 
@@ -1356,7 +1354,7 @@ class Employé {
 }
 ```
 
-**[⬆ retour au sommet](#table-des-matières)**
+**[⬆ retour au sommaire](#table-des-matières)**
 
 ## **SOLID**
 
@@ -1418,7 +1416,7 @@ class ParamètresUtilisateur {
 }
 ```
 
-**[⬆ retour au sommet](#table-des-matières)**
+**[⬆ retour au sommaire](#table-des-matières)**
 
 ### Principe Ouvert / Fermé (POF)
 
@@ -1509,7 +1507,7 @@ class RequêtementHttp {
 }
 ```
 
-**[⬆ retour au sommet](#table-des-matières)**
+**[⬆ retour au sommaire](#table-des-matières)**
 
 ### Principe de substitution de Liskov (PSL)
 
@@ -1628,7 +1626,7 @@ const formes = [new Rectangle(4, 5), new Rectangle(4, 5), new Square(5)];
 rendreLesGrandesFormes(formes);
 ```
 
-**[⬆ retour au sommet](#table-des-matières)**
+**[⬆ retour au sommaire](#table-des-matières)**
 
 ### Principe de séparation des interfaces (ISP)
 
@@ -1706,7 +1704,7 @@ const $ = new DOMTraverser({
 });
 ```
 
-**[⬆ retour au sommet](#table-des-matières)**
+**[⬆ retour au sommaire](#table-des-matières)**
 
 ### Principe d'inversion de dépendance (DIP)
 
@@ -1809,7 +1807,7 @@ const traqueurInventaire = new SuiviInventaire(
 traqueurInventaire.demanderDesArticles();
 ```
 
-**[⬆ retour au sommet](#table-des-matières)**
+**[⬆ retour au sommaire](#table-des-matières)**
 
 ## **Testage**
 
@@ -1880,7 +1878,7 @@ describe("Rendre MomentJS encore une fois génial", () => {
 });
 ```
 
-**[⬆ retour au sommet](#table-des-matières)**
+**[⬆ retour au sommaire](#table-des-matières)**
 
 ## **Simultanéité**
 
@@ -1931,7 +1929,7 @@ get("https://en.wikipedia.org/wiki/Robert_Cecil_Martin")
   });
 ```
 
-**[⬆ retour au sommet](#table-des-matières)**
+**[⬆ retour au sommaire](#table-des-matières)**
 
 ### Async / Await sont encore plus propres que Promises
 
@@ -1978,7 +1976,7 @@ async function obtenirUnArticleDeCodePropre() {
 }
 ```
 
-**[⬆ retour au sommet](#table-des-matières)**
+**[⬆ retour au sommaire](#table-des-matières)**
 
 ## **La Gestion des Erreurs**
 
@@ -2057,7 +2055,7 @@ getdata()
   });
 ```
 
-**[⬆ retour au sommet](#table-des-matières)**
+**[⬆ retour au sommaire](#table-des-matières)**
 
 ## **Mise En Forme**
 
@@ -2108,7 +2106,7 @@ class Animale {}
 class Alpaga {}
 ```
 
-**[⬆ retour au sommet](#table-des-matières)**
+**[⬆ retour au sommaire](#table-des-matières)**
 
 ### Les appelants et les correspondants doivent être rapprochés
 
@@ -2196,7 +2194,7 @@ const evaluation = new ExamenDuRendement(employé);
 evaluation.examenDuRendement();
 ```
 
-**[⬆ retour au sommet](#table-des-matières)**
+**[⬆ retour au sommaire](#table-des-matières)**
 
 ## **Commentaires**
 
@@ -2243,7 +2241,7 @@ function hasher(données) {
 }
 ```
 
-**[⬆ retour au sommet](#table-des-matières)**
+**[⬆ retour au sommaire](#table-des-matières)**
 
 ### Ne laissez pas de code commenté dans votre base de code
 
@@ -2264,7 +2262,7 @@ faireUneChose();
 faireUneChose();
 ```
 
-**[⬆ retour au sommet](#table-des-matières)**
+**[⬆ retour au sommaire](#table-des-matières)**
 
 ### Je n'ai pas de commentaires dans le journal
 
@@ -2293,7 +2291,7 @@ function combiner(a, b) {
 }
 ```
 
-**[⬆ retour au sommet](#table-des-matières)**
+**[⬆ retour au sommaire](#table-des-matières)**
 
 ### Évitez les marqueurs de position
 
@@ -2332,7 +2330,7 @@ const actions = function() {
 };
 ```
 
-**[⬆ retour au sommet](#table-des-matières)**
+**[⬆ retour au sommaire](#table-des-matières)**
 
 ## Traduction
 
@@ -2359,4 +2357,4 @@ Ceci est également disponible dans d'autres langues:
 - ![it](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Italy.png) **Italien**:
   [frappacchio/clean-code-javascript/](https://github.com/frappacchio/clean-code-javascript/)
 
-**[⬆ retour au sommet](#table-des-matières)**
+**[⬆ retour au sommaire](#table-des-matières)**
