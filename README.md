@@ -27,7 +27,7 @@ Tous les principes énoncés ici ne doivent pas être strictement suivis, et son
 
 Notre métier de génie logiciel a un peu plus de 50 ans et nous apprenons encore beaucoup. Lorsque l'architecture logicielle sera aussi ancienne que l'architecture elle-même, nous aurons peut-être des règles plus strictes à suivre. Pour l’instant, laissez ces instructions servir de point de repère pour évaluer la qualité du code JavaScript que vous et votre équipe produisez.
 
-Encore une chose à savoir : cela ne fera pas de vous un meilleur développeur de logiciels et utiliser ses principes pendant de nombreuses années ne signifie pas que vous ne ferez pas d'erreurs. Chaque morceau de code commence par un premier brouillon, comme l'argile humide qui prend sa forme finale. Enfin, nous corrigeons les imperfections lorsque nous les examinons avec nos pairs. Ne vous battez pas pour les premières ébauches à améliorer. Battez le code à la place!
+Encore une chose à savoir : cela ne fera pas de vous un meilleur développeur de logiciels et utiliser ces principes pendant de nombreuses années ne signifie pas que vous ne ferez pas d'erreurs. Chaque morceau de code commence par un premier brouillon, comme l'argile humide qui prend sa forme finale. Enfin, nous corrigeons les imperfections lorsque nous les examinons avec nos pairs. Ne vous battez pas pour les premières ébauches à améliorer. Battez le code à la place!
 
 ## **Variables**
 
@@ -817,7 +817,7 @@ class Cessna extends Airplane {
 ### Éviter la vérification de type (partie 1)
 
 JavaScript n'est pas typé, ce qui signifie que vos fonctions peuvent accepter n'importe quel type d'argument.
-Parfois, vous êtes ennuyé par cette liberté et cela devient tentant de le faire vérification de type dans vos fonctions. Il y a plusieurs façons d'éviter d'avoir à le faire.
+Parfois, vous êtes ennuyé par cette liberté et cela devient tentant de faire la vérification de type dans vos fonctions. Il y a plusieurs façons d'éviter d'avoir à le faire.
 La première chose à considérer est la cohérence des API.
 
 **Mal:**
